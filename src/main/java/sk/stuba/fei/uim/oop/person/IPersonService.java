@@ -7,4 +7,6 @@ public interface IPersonService {
     List<Person> getAll();
 
     Person getById(Long id);
+
+    Person save(Person p);
 }

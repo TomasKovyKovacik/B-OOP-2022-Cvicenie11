@@ -4,4 +4,5 @@ import java.util.List;
 
 public interface IAnimalService {
     List<Animal> getAll();
+    Animal create(AnimalRequest request);
 }

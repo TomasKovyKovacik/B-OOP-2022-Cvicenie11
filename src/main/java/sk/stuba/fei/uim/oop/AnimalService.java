@@ -21,10 +21,18 @@ public class AnimalService implements IAnimalService {
         System.out.println(a2.getId());
         a2 = this.repository.save(a2);
         System.out.println(a2);
+        this.repository.delete(a2);
     }
 
     @Override
     public List<Animal> getAll() {
         return this.repository.findAll();
+    }
+
+    @Override
+    public Animal create(AnimalRequest request) {
+        Animal a = new Animal();
+        a.setSpecies(request.getSpecies());
+        return this.repository.save(a);
     }
 }

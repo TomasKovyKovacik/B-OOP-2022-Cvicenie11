@@ -23,4 +23,9 @@ public class AnimalController {
     public ResponseEntity<AnimalResponse> addAnimal(@RequestBody AnimalRequest request) {
         return new ResponseEntity<>(new AnimalResponse(this.service.create(request)), HttpStatus.CREATED);
     }
+
+    @GetMapping("/{name}")
+    public List<AnimalResponse> getAllAnimalsByName(@PathVariable("name") String name) {
+        return this.service.getAllByName(name).stream().map(AnimalResponse::new).collect(Collectors.toList());
+    }
 }

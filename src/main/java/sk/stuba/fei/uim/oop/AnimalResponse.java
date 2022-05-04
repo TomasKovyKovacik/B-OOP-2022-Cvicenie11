@@ -1,5 +1,8 @@
 package sk.stuba.fei.uim.oop;
 
+import lombok.Getter;
+
+@Getter
 public class AnimalResponse {
     private Long id;
 

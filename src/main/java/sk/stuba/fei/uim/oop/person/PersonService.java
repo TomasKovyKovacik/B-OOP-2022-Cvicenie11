@@ -23,4 +23,9 @@ public class PersonService implements IPersonService{
     public List<Person> getAll() {
         return this.repository.findAll();
     }
+
+    @Override
+    public Person getById(Long id) {
+        return this.repository.findById(id).get();
+    }
 }

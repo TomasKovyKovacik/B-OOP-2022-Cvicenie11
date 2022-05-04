@@ -28,4 +28,9 @@ public class AnimalController {
     public List<AnimalResponse> getAllAnimalsByName(@PathVariable("name") String name) {
         return this.service.getAllByName(name).stream().map(AnimalResponse::new).collect(Collectors.toList());
     }
+
+    @PutMapping("/{id}")
+    public AnimalResponse addPersonToAnimal(@PathVariable("id") Long animalId, @RequestParam("person") Long personId) {
+        return new AnimalResponse(this.service.addPersonToAnimal(animalId, personId));
+    }
 }

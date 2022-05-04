@@ -1,11 +1,9 @@
 package sk.stuba.fei.uim.oop.animal;
 
 import lombok.Data;
+import sk.stuba.fei.uim.oop.person.Person;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -18,4 +16,7 @@ public class Animal {
     private String species;
 
     private String name;
+
+    @OneToOne
+    private Person person;
 }

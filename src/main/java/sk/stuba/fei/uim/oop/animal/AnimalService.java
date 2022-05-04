@@ -2,13 +2,18 @@ package sk.stuba.fei.uim.oop.animal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sk.stuba.fei.uim.oop.person.IPersonService;
+import sk.stuba.fei.uim.oop.person.Person;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AnimalService implements IAnimalService {
 
     private IAnimalRepository repository;
+    @Autowired
+    private IPersonService personService;
 
     @Autowired
     public AnimalService(IAnimalRepository repository) {
@@ -39,5 +44,16 @@ public class AnimalService implements IAnimalService {
     @Override
     public List<Animal> getAllByName(String name) {
         return this.repository.findAllByName(name);
+    }
+
+    @Override
+    public Animal addPersonToAnimal(Long animalId, Long personId) {
+        Optional<Animal> animalOpt = this.repository.findById(animalId);
+        Animal animal = animalOpt.get();
+        Person person = this.personService.getById(personId);
+
+        animal.setPerson(person);
+
+        return this.repository.save(animal);
     }
 }
